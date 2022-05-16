@@ -1,9 +1,9 @@
 from engine.capulet_engine import CapuletEngine
 from battery.spindler_battery import SpindlerBattery
-
-class Calliope(CapuletEngine, SpindlerBattery):
-    def needs_service(self):
-        if self.battery_should_be_serviced() or self.engine_should_be_serviced():
-            return True
-        else:
-            return False
+from car import Car
+@staticmethod
+def Calliope(current_year, last_battery_service_date, current_mileage, last_engine_service_mileage):
+  engine = CapuletEngine(current_mileage, last_engine_service_mileage)
+  battery = SpindlerBattery(current_year, last_battery_service_date)
+  car = Car(engine, battery)
+  return car

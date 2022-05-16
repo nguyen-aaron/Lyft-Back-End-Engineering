@@ -1,10 +1,11 @@
 from engine.willoughby_engine import WilloughbyEngine
 from battery.spindler_battery import SpindlerBattery
 from tire.michelin_tire import MichelinTire
+from car import Car
 
-class ExampleCar(WilloughbyEngine, SpindlerBattery, MichelinTire):
-    def needs_service(self):
-      if self.battery_should_be_serviced() or self.engine_should_be_serviced() or self.tire_should_be_serviced():
-        return True
-      else:
-        return False
+def ExampleCar(current_year, last_battery_service_date, current_mileage, last_engine_service_mileage, last_tire_service_mileage):
+  engine = WilloughbyEngine(current_mileage, last_engine_service_mileage)
+  battery = SpindlerBattery(current_year, last_battery_service_date)
+  tire = MichelinTire(current_mileage, last_tire_service_mileage)
+  car = Car(engine, battery, tire)
+  return car

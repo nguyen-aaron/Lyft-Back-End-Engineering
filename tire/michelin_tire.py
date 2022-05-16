@@ -1,12 +1,13 @@
-from abc import ABC
-from car import Car
+from tire.tire import Tire
 
-class MichelinTire(Car, ABC):
-    def __init__(self, tire_service_date, current_mileage, last_tire_service_mileage):
-        super().__init__(tire_service_date)
-        self.current_mileage = current_mileage
-        self.last_tire_service_mileage = last_tire_service_mileage
+class MichelinTire(Tire):
+    def __init__(self, last_tire_service_mileage, current_mileage):
+      self.last_tire_service_mileage = last_tire_service_mileage
+      self.current_mileage = current_mileage
       
 #tires need service every 80000 miles, Michelin is better than Bridgestone
-    def tire_should_be_serviced(self):
-        return self.current_mileage - self.last_tire_service_mileage > 80000
+    def needs_service(self):
+      if self.current_mileage - self.last_tire_service_mileage > 80000:
+        return True
+      else:
+        return False

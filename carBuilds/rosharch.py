@@ -1,10 +1,9 @@
 from engine.willoughby_engine import WilloughbyEngine
 from battery.nubbin_battery import NubbinBattery
+from car import Car
 
-
-class Rorschach(WilloughbyEngine, NubbinBattery):
-    def needs_service(self):
-      if self.battery_should_be_serviced() or self.engine_should_be_serviced():
-        return True
-      else:
-        return False
+def Rosharch(current_year, last_battery_service_date, current_mileage, last_engine_service_mileage):
+  engine = WilloughbyEngine(current_mileage, last_engine_service_mileage)
+  battery = NubbinBattery(current_year, last_battery_service_date)
+  car = Car(engine, battery)
+  return car
