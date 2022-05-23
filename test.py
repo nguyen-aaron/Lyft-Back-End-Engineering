@@ -6,6 +6,8 @@ from engine.willoughby_engine import WilloughbyEngine
 from engine.capulet_engine import CapuletEngine
 from tire.michelin_tire import MichelinTire
 from tire.bridgestone_tire import BridgestoneTire
+from tire.carrigan_tire import CarriganTire
+from tire.octoprime_tire import OctoprimeTire
 
 
 class TestNubbinBattery(unittest.TestCase):
@@ -103,6 +105,21 @@ class TestBridgestoneTire(unittest.TestCase):
     current_mileage = 4999
     tire = BridgestoneTire(last_tire_service_mileage, current_mileage)
     self.assertFalse(tire.needs_service())
+
+class TestCarriganTire(unittest.TestCase):
+  def test_carrigan_tire_should_be_serviced(self):
+    tire_wear = [0,0,1,0]
+    tire_wear_total = 0
+    tire = CarriganTire(tire_wear, tire_wear_total)
+    self.assertTrue(tire.needs_service())
+
+  def test_carrigan_tire_should_not_be_serviced(self):
+    tire_wear = [0,0,0,0]
+    tire_wear_total = 0
+    tire = CarriganTire(tire_wear, tire_wear_total)
+    self.assertFalse(tire.needs_service())
+  
+    
 
 if __name__ == '__main__':
     unittest.main()
